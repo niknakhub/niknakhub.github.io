@@ -1,6 +1,6 @@
 title: A-Z
-tagline: Din personlige rejse gennem viden og teknik
-description: En platform af niknak - dedikeret til innovation og systematik.
+tagline: Klassisk innovation og systematik
+description: En platform af niknak - dedikeret til teknisk præcision.
 url: "https://niknakhub.github.io"
 baseurl: ""
 
@@ -9,11 +9,19 @@ author:
   github: niknakhub
   twitter: niknakhub
 
+# Design-agentens visuelle identitet
 avatar: https://github.com
+theme_mode: dark # Sætter en stilfuld mørk baggrund som standard
 
 lang: da
 timezone: Europe/Copenhagen
 theme: jekyll-theme-chirpy
+
+# Klassisk menu-struktur (Vi fjerner Archives og Tags for et rent look)
+tabs:
+  - home
+  - categories
+  - about
 
 paginate: 10
 
