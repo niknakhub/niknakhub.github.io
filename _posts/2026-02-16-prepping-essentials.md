@@ -6,31 +6,25 @@ categories: [Prepping, Strategi]
 ---
 
 # The Logical Prep: Keeping it Simple
-Don't turn your home into a warehouse. Focus on the transition from the first 72 hours to long-term resilience.
+Focus on the transition from the first 72 hours to long-term resilience.
 
 ### 🔴 Short Term (The 72-Hour Budget Kit)
-*   **Focus:** Immediate survival and communication.
-*   **Essentials:** Water (3L/day), Powerbank, AM/FM Radio, First Aid.
-*   **Cost:** Minimal. Use what you already have in your pantry.
+*   **Focus:** Immediate survival (Water, Power, Radio).
+*   **Cost:** Minimal. Use what you have.
 
 ### 🟢 Long Term (The Luxury Resilience)
-*   **Focus:** Independence from the grid for weeks/months.
-*   **Essentials:** Solar Generators, Gravity Water Filters, Freeze-dried nutrients.
-*   **Cost:** Investment in high-quality gear that lasts 20+ years.
+*   **Focus:** Independence for weeks/months (Solar, Filtration, MRE).
+*   **Cost:** Investment in 20+ years of quality.
 
 ---
 
 # Den Logiske Prepper: Hold det simpelt
-Du behøver ikke et grossist-lager. Fokusér på overgangen fra de første 72 timer til den langsigtede uafhængighed.
+Fokusér på overgangen fra de første 72 timer til den langsigtede uafhængighed.
 
 ## 🔴 Kort sigt (72-timers Budget-pakken)
-*   **Fokus:** Øjeblikkelig overlevelse og kommunikation.
-*   **Det vigtigste:** Vand (3L/dag), Powerbank, AM/FM radio, Førstehjælp.
-*   **Pris:** Minimal. Brug det, du allerede har i køkkenskabene.
+*   **Fokus:** Øjeblikkelig overlevelse (Vand, Strøm, Radio).
+*   **Pris:** Minimal. Brug det, du har i skabene.
 
 ## 🟢 Lang sigt (Luksus-Resiliens)
-*   **Fokus:** Uafhængighed af systemet i uger eller måneder.
-*   **Det vigtigste:** Solcelle-generatorer, Gravity-vandfiltre, Frysetørret mad med lang holdbarhed.
-*   **Pris:** En investering i kvalitetsudstyr, der holder i 20+ år.
-
-> **Status:** Ren, overskuelig og logisk. Ingen unødig støj.
+*   **Fokus:** Uafhængighed i uger/måneder (Solceller, Filtrering, Langtidsmad).
+*   **Pris:** Investering i 20+ års kvalitet.
