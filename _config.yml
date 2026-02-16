@@ -9,15 +9,15 @@ author:
   github: niknakhub
   twitter: niknakhub
 
+avatar: https://github.com
+
 lang: da
 timezone: Europe/Copenhagen
 theme: jekyll-theme-chirpy
 
 paginate: 10
 
-# Tekniske indstillinger (Slet ikke disse!)
 kramdown:
-  footnote_backlink: "↩&#xfe0e;"
   syntax_highlighter: rouge
 collections:
   tabs:
@@ -38,7 +38,3 @@ defaults:
       permalink: /:title/
 sass:
   style: compressed
-exclude:
-  - vendor/
-  - .bundle/
-  - .github/
