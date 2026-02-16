@@ -1,42 +1,44 @@
-# ==========================================
-# MASTERPLAN: FASE 1 - A-Z KONFIGURATION
-# ==========================================
-
 title: A-Z
 tagline: Din personlige rejse gennem viden og teknik
 description: En platform af niknak - dedikeret til innovation og systematik.
+url: "https://niknakhub.github.io"
+baseurl: ""
 
-# Agent-identitet
 author:
   name: niknak
   github: niknakhub
   twitter: niknakhub
 
-# Netværks-opsætning
-url: "https://niknakhub.github.io"
-baseurl: ""
-layout: home
 lang: da
 timezone: Europe/Copenhagen
-
-# Tema-specifikationer (Chirpy Engine)
 theme: jekyll-theme-chirpy
 
-# Menustyring (Hjælper-agentens opgave)
-tabs:
-  - home
-  - categories
-  - tags
-  - about
-
-# Tekniske parametre til Build-agenten
 paginate: 10
-markdown: kramdown
-highlighter: rouge
-excerpt_separator: <!--more-->
 
-# SEO & Sikkerhed
-plugins:
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-seo-tag
+# Tekniske indstillinger (Slet ikke disse!)
+kramdown:
+  footnote_backlink: "↩&#xfe0e;"
+  syntax_highlighter: rouge
+collections:
+  tabs:
+    output: true
+    sort_by: order
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      permalink: /posts/:title/
+  - scope:
+      path: ""
+      type: tabs
+    values:
+      layout: page
+      permalink: /:title/
+sass:
+  style: compressed
+exclude:
+  - vendor/
+  - .bundle/
+  - .github/
