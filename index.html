@@ -1,4 +1,64 @@
 ---
-layout: home
-# Index page
+layout: page
+# Den her side bliver nu din "Front Page"
 ---
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com" rel="stylesheet">
+
+<div class="max-w-4xl mx-auto py-10 px-4">
+    <!-- HERO SEKTION -->
+    <div class="text-center mb-16">
+        <h1 class="text-4xl font-bold text-green-900 mb-6">3 døgn. Det er alt, du behøver.</h1>
+        <p class="text-lg text-gray-600">Beredskab uden panik. Fokus på ro, orden og pladsbesparelse.</p>
+    </div>
+
+    <!-- BEREGNER MODUL (DET PROFESSIONELLE LOOK) -->
+    <div class="bg-green-900 text-white p-8 rounded-3xl shadow-2xl mb-12">
+        <h2 class="text-2xl font-bold text-center mb-8">Beredskabsberegner</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div class="bg-white/10 p-4 rounded-xl">
+                <label class="block text-xs font-bold uppercase mb-2 text-green-200">Voksne</label>
+                <input type="number" id="voksne_front" value="1" min="1" oninput="calculateFront()" class="w-full bg-transparent text-white text-2xl font-bold border-b-2 border-green-400 outline-none">
+            </div>
+            <div class="bg-white/10 p-4 rounded-xl">
+                <label class="block text-xs font-bold uppercase mb-2 text-green-200">Børn</label>
+                <input type="number" id="children_front" value="0" min="0" oninput="calculateFront()" class="w-full bg-transparent text-white text-2xl font-bold border-b-2 border-green-400 outline-none">
+            </div>
+            <div class="bg-white/10 p-4 rounded-xl">
+                <label class="block text-xs font-bold uppercase mb-2 text-green-200">Kæledyr</label>
+                <input type="number" id="pets_front" value="0" min="0" oninput="calculateFront()" class="w-full bg-transparent text-white text-2xl font-bold border-b-2 border-green-400 outline-none">
+            </div>
+        </div>
+        <div class="flex flex-col md:flex-row justify-around items-center space-y-6 md:space-y-0 text-center">
+            <div>
+                <p class="text-sm uppercase text-green-300 mb-1">Drikkevand (3 døgn)</p>
+                <p class="text-4xl font-bold"><span id="waterFront">9</span> L</p>
+            </div>
+            <div class="h-12 w-px bg-green-700 hidden md:block"></div>
+            <div>
+                <p class="text-sm uppercase text-green-300 mb-1">Plads-estimat</p>
+                <p class="text-xl font-bold" id="spaceFront">Single-æske (15L)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function calculateFront() {
+        const v = parseInt(document.getElementById('voksne_front').value) || 0;
+        const c = parseInt(document.getElementById('children_front').value) || 0;
+        const p = parseInt(document.getElementById('pets_front').value) || 0;
+        
+        const water = ((v + c) * 9) + (p * 3);
+        document.getElementById('waterFront').innerText = water;
+        
+        const space = (v + c) > 1 ? "Familie-kasse (60L)" : "Single-æske (15L)";
+        document.getElementById('spaceFront').innerText = space;
+    }
+</script>
+
+<style>
+    body { font-family: 'Open Sans', sans-serif; background-color: #F9FAFB; }
+    h1, h2 { font-family: 'Montserrat', sans-serif; }
+</style>
