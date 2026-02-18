@@ -1,64 +1,85 @@
 ---
 layout: page
-# Den her side bliver nu din "Front Page"
 ---
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com" rel="stylesheet">
 
-<div class="max-w-4xl mx-auto py-10 px-4">
-    <!-- HERO SEKTION -->
-    <div class="text-center mb-16">
-        <h1 class="text-4xl font-bold text-green-900 mb-6">3 døgn. Det er alt, du behøver.</h1>
-        <p class="text-lg text-gray-600">Beredskab uden panik. Fokus på ro, orden og pladsbesparelse.</p>
-    </div>
+<div class="max-w-5xl mx-auto px-4 py-8 space-y-20">
+    
+    <!-- 1. HERO -->
+    <header class="text-center space-y-6 py-10">
+        <h1 class="text-5xl font-bold text-green-900 tracking-tight">3 døgn. Det er alt, du behøver.</h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">Beredskab uden panik. Vi fokuserer på ro, orden og pladsbesparelse for moderne husstande.</p>
+        <div class="flex justify-center gap-4 text-sm font-bold uppercase tracking-widest text-green-700">
+            <span class="bg-green-100 px-4 py-2 rounded-full">72 Timer</span>
+            <span class="bg-green-100 px-4 py-2 rounded-full">Kompakt Design</span>
+        </div>
+    </header>
 
-    <!-- BEREGNER MODUL (DET PROFESSIONELLE LOOK) -->
-    <div class="bg-green-900 text-white p-8 rounded-3xl shadow-2xl mb-12">
-        <h2 class="text-2xl font-bold text-center mb-8">Beredskabsberegner</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            <div class="bg-white/10 p-4 rounded-xl">
-                <label class="block text-xs font-bold uppercase mb-2 text-green-200">Voksne</label>
-                <input type="number" id="voksne_front" value="1" min="1" oninput="calculateFront()" class="w-full bg-transparent text-white text-2xl font-bold border-b-2 border-green-400 outline-none">
+    <!-- 2. BEREGNER (MODERNE KORT) -->
+    <section class="bg-green-900 rounded-[2rem] p-8 md:p-12 shadow-2xl text-white relative overflow-hidden">
+        <div class="relative z-10">
+            <h2 class="text-3xl font-bold text-center mb-10">Beredskabsberegner</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10">
+                    <label class="block text-xs font-black uppercase mb-3 text-green-300">Voksne</label>
+                    <input type="number" id="v_in" value="1" min="1" oninput="runCalc()" class="w-full bg-transparent text-3xl font-bold outline-none border-b-2 border-green-500 pb-2">
+                </div>
+                <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10">
+                    <label class="block text-xs font-black uppercase mb-3 text-green-300">Børn</label>
+                    <input type="number" id="b_in" value="0" min="0" oninput="runCalc()" class="w-full bg-transparent text-3xl font-bold outline-none border-b-2 border-green-500 pb-2">
+                </div>
+                <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10">
+                    <label class="block text-xs font-black uppercase mb-3 text-green-300">Kæledyr</label>
+                    <input type="number" id="k_in" value="0" min="0" oninput="runCalc()" class="w-full bg-transparent text-3xl font-bold outline-none border-b-2 border-green-500 pb-2">
+                </div>
             </div>
-            <div class="bg-white/10 p-4 rounded-xl">
-                <label class="block text-xs font-bold uppercase mb-2 text-green-200">Børn</label>
-                <input type="number" id="children_front" value="0" min="0" oninput="calculateFront()" class="w-full bg-transparent text-white text-2xl font-bold border-b-2 border-green-400 outline-none">
-            </div>
-            <div class="bg-white/10 p-4 rounded-xl">
-                <label class="block text-xs font-bold uppercase mb-2 text-green-200">Kæledyr</label>
-                <input type="number" id="pets_front" value="0" min="0" oninput="calculateFront()" class="w-full bg-transparent text-white text-2xl font-bold border-b-2 border-green-400 outline-none">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 border-t border-white/20 pt-10 text-center">
+                <div>
+                    <p class="text-xs uppercase font-bold text-green-300 mb-2">Drikkevand (Buffer)</p>
+                    <p class="text-5xl font-black"><span id="w_out">9</span><span class="text-2xl ml-2 font-normal text-green-400">Liter</span></p>
+                </div>
+                <div>
+                    <p class="text-xs uppercase font-bold text-green-300 mb-2">Plads-optimering</p>
+                    <p class="text-2xl font-bold py-2 px-6 bg-white/10 rounded-full inline-block" id="s_out">Single-æske (15L)</p>
+                </div>
             </div>
         </div>
-        <div class="flex flex-col md:flex-row justify-around items-center space-y-6 md:space-y-0 text-center">
-            <div>
-                <p class="text-sm uppercase text-green-300 mb-1">Drikkevand (3 døgn)</p>
-                <p class="text-4xl font-bold"><span id="waterFront">9</span> L</p>
+    </section>
+
+    <!-- 3. TJEKLISTE (GRID) -->
+    <section class="space-y-10">
+        <h2 class="text-3xl font-bold text-center text-green-900">Det du allerede har i skabet</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div class="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition">
+                <span class="text-4xl block mb-3">🔦</span><p class="font-bold">Lommelygte</p>
             </div>
-            <div class="h-12 w-px bg-green-700 hidden md:block"></div>
-            <div>
-                <p class="text-sm uppercase text-green-300 mb-1">Plads-estimat</p>
-                <p class="text-xl font-bold" id="spaceFront">Single-æske (15L)</p>
+            <div class="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition">
+                <span class="text-4xl block mb-3">🔋</span><p class="font-bold">Powerbank</p>
+            </div>
+            <div class="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition">
+                <span class="text-4xl block mb-3">📻</span><p class="font-bold">FM-Radio</p>
+            </div>
+            <div class="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition">
+                <span class="text-4xl block mb-3">📝</span><p class="font-bold">Telefonliste</p>
             </div>
         </div>
-    </div>
+    </section>
+
 </div>
 
 <script>
-    function calculateFront() {
-        const v = parseInt(document.getElementById('voksne_front').value) || 0;
-        const c = parseInt(document.getElementById('children_front').value) || 0;
-        const p = parseInt(document.getElementById('pets_front').value) || 0;
-        
-        const water = ((v + c) * 9) + (p * 3);
-        document.getElementById('waterFront').innerText = water;
-        
-        const space = (v + c) > 1 ? "Familie-kasse (60L)" : "Single-æske (15L)";
-        document.getElementById('spaceFront').innerText = space;
-    }
+function runCalc() {
+    const v = parseInt(document.getElementById('v_in').value) || 0;
+    const b = parseInt(document.getElementById('b_in').value) || 0;
+    const k = parseInt(document.getElementById('k_in').value) || 0;
+    document.getElementById('w_out').innerText = ((v + b) * 9) + (k * 3);
+    document.getElementById('s_out').innerText = (v + b) > 1 ? "Standard Kasse (60L)" : "Single-æske (15L)";
+}
 </script>
 
 <style>
-    body { font-family: 'Open Sans', sans-serif; background-color: #F9FAFB; }
+    #main-wrapper { background-color: #F9FAFB !important; }
     h1, h2 { font-family: 'Montserrat', sans-serif; }
 </style>
