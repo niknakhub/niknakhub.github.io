@@ -1,6 +1,8 @@
 ---
 layout: page
-title: MinPrepping - 72 Timer
+title: Prepping Guide
+icon: fas fa-shield-alt
+order: 1
 permalink: /prepping/
 ---
 
