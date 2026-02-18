@@ -6,103 +6,118 @@ layout: page
 <link href="https://fonts.googleapis.com" rel="stylesheet">
 
 <style>
-    #sidebar, #topbar { display: none !important; }
-    #main-wrapper { margin-left: 0 !important; padding: 0 !important; width: 100% !important; max-width: 100% !important; background-color: #F9FAFB !important; }
-    #main { max-width: 100% !important; }
-    .post-content { padding: 0 !important; }
-    body { background-color: #F9FAFB !important; color: #1a3317 !important; font-family: 'Open Sans', sans-serif; }
+    /* TOTAL RYDNING AF TEMA-RESTER */
+    #sidebar, #topbar, #footer, .post-meta, .post-title, #access-lastmod { display: none !important; }
+    #main-wrapper { margin: 0 !important; padding: 0 !important; width: 100% !important; max-width: 100% !important; background-color: #ffffff !important; }
+    #main { max-width: 100% !important; padding: 0 !important; }
+    #core-wrapper { padding: 0 !important; }
+    .post-content { padding: 0 !important; margin: 0 !important; }
+    
+    body { background-color: #ffffff !important; color: #1a3317 !important; font-family: 'Open Sans', sans-serif; overflow-x: hidden; }
     h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
-    /* Fix for mørke felter */
-    input, textarea { background-color: #ffffff !important; color: #000000 !important; border: 2px solid #ccc !important; }
+    
+    /* MODAL FIX - ALTID LYST */
+    .modal-content { background-color: #ffffff !important; color: #000000 !important; }
+    input, textarea { background-color: #f3f4f6 !important; color: #000000 !important; border: 2px solid #2D5A27 !important; font-weight: bold; }
 </style>
 
-<div class="max-w-4xl mx-auto px-4 py-16 space-y-20">
-    <header class="text-center space-y-4">
-        <h1 class="text-6xl md:text-8xl font-black text-green-900 tracking-tighter uppercase italic">Prepping</h1>
-        <p class="text-2xl md:text-3xl font-bold text-gray-700 uppercase tracking-widest">Behov og mangler</p>
-        <div class="h-1 w-20 bg-green-700 mx-auto my-6"></div>
-        <p class="text-xl text-green-800 font-bold italic text-center">Smart Prepping. Vores Husholdning.</p>
+<div class="min-h-screen bg-white flex flex-col items-center justify-start px-4 py-12 md:py-24 space-y-16">
+    
+    <header class="text-center space-y-2">
+        <h1 class="text-6xl md:text-9xl font-black text-green-900 tracking-tighter uppercase italic">Prepping</h1>
+        <p class="text-xl md:text-3xl font-bold text-gray-400 uppercase tracking-[0.3em]">Behov og mangler</p>
+        <div class="h-2 w-24 bg-green-700 mx-auto my-8"></div>
+        <p class="text-xl md:text-2xl text-green-800 font-bold italic tracking-tight">Smart Prepping. Vores Husholdning.</p>
     </header>
 
-    <section>
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
-            <button onclick="openM('calc')" class="p-8 bg-white border-2 border-green-800 rounded-[2.5rem] shadow-xl hover:bg-green-50 transition-all text-center">
-                <span class="text-5xl block mb-2">🧮</span><p class="font-black text-xs uppercase text-green-900">Beregner</p>
-            </button>
-            <button onclick="openM('gear')" class="p-8 bg-white border border-gray-200 rounded-[2.5rem] shadow-sm hover:scale-105 transition-all text-center">
-                <span class="text-5xl block mb-2">🔦</span><p class="font-bold text-xs uppercase text-gray-500">Grej</p>
-            </button>
-            <button onclick="openM('power')" class="p-8 bg-white border border-gray-200 rounded-[2.5rem] shadow-sm hover:scale-105 transition-all text-center">
-                <span class="text-5xl block mb-2">🔋</span><p class="font-bold text-xs uppercase text-gray-500">Energi</p>
-            </button>
-            <button onclick="openM('info')" class="p-8 bg-white border border-gray-200 rounded-[2.5rem] shadow-sm hover:scale-105 transition-all text-center">
-                <span class="text-5xl block mb-2">📻</span><p class="font-bold text-xs uppercase text-gray-500">Info</p>
-            </button>
-            <button onclick="openM('list')" class="p-8 bg-white border border-gray-200 rounded-[2.5rem] shadow-sm hover:scale-105 transition-all text-center">
-                <span class="text-5xl block mb-2">📝</span><p class="font-bold text-xs uppercase text-gray-500">Kontakt</p>
-            </button>
-        </div>
-    </section>
+    <nav class="grid grid-cols-2 md:grid-cols-5 gap-4 w-full max-w-5xl">
+        <button onclick="openM('calc')" class="p-8 bg-white border-4 border-green-800 rounded-[3rem] shadow-xl hover:bg-green-50 transition-all flex flex-col items-center">
+            <span class="text-5xl mb-2">🧮</span><p class="font-black text-xs uppercase">Beregner</p>
+        </button>
+        <button onclick="openM('gear')" class="p-8 bg-gray-50 border-2 border-gray-100 rounded-[3rem] hover:scale-105 transition-all flex flex-col items-center opacity-80">
+            <span class="text-5xl mb-2">🔦</span><p class="font-bold text-xs uppercase text-gray-500">Grej</p>
+        </button>
+        <button onclick="openM('power')" class="p-8 bg-gray-50 border-2 border-gray-100 rounded-[3rem] hover:scale-105 transition-all flex flex-col items-center opacity-80">
+            <span class="text-5xl mb-2">🔋</span><p class="font-bold text-xs uppercase text-gray-500">Energi</p>
+        </button>
+        <button onclick="openM('info')" class="p-8 bg-gray-50 border-2 border-gray-100 rounded-[3rem] hover:scale-105 transition-all flex flex-col items-center opacity-80">
+            <span class="text-5xl mb-2">📻</span><p class="font-bold text-xs uppercase text-gray-500">Info</p>
+        </button>
+        <button onclick="openM('list')" class="p-8 bg-gray-50 border-2 border-gray-100 rounded-[3rem] hover:scale-105 transition-all flex flex-col items-center opacity-80">
+            <span class="text-5xl mb-2">📝</span><p class="font-bold text-xs uppercase text-gray-500">Kontakt</p>
+        </button>
+    </nav>
 </div>
 
-<div id="m-box" class="fixed inset-0 bg-black/70 hidden z-50 flex items-center justify-center p-4 backdrop-blur-md">
-    <div class="bg-white rounded-[3rem] p-8 md:p-12 max-w-2xl w-full shadow-2xl relative border-t-[15px] border-green-900 overflow-y-auto max-h-[90vh]">
-        <h3 id="m-title" class="text-3xl font-black text-green-900 mb-6 uppercase italic tracking-tighter"></h3>
-        <div id="m-body" class="text-gray-700 mb-8"></div>
-        <button onclick="closeM()" class="w-full py-5 bg-green-900 text-white rounded-2xl font-black uppercase tracking-widest hover:bg-black transition-all font-bold">OK LUK</button>
+<!-- MODAL -->
+<div id="m-box" class="fixed inset-0 bg-green-900/40 hidden z-[9999] flex items-center justify-center p-4 backdrop-blur-md">
+    <div class="bg-white rounded-[4rem] p-10 md:p-14 max-w-2xl w-full shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] relative border-b-[20px] border-green-900 overflow-y-auto max-h-[90vh] modal-content">
+        <h3 id="m-title" class="text-4xl font-black text-green-900 mb-8 uppercase italic tracking-tighter"></h3>
+        <div id="m-body" class="mb-10 text-lg"></div>
+        <button onclick="closeM()" class="w-full py-6 bg-green-900 text-white rounded-3xl font-black uppercase tracking-widest hover:bg-black transition-all">OK LUK</button>
     </div>
 </div>
 
 <script>
 const data = {
     calc: { 
-        t: "Mangel-Beregner", 
-        h: `<div class="space-y-6">
-                <div class="bg-gray-50 p-6 rounded-3xl border-2 border-gray-100 grid grid-cols-3 gap-2">
-                    <div><label class="block text-[10px] font-bold uppercase mb-1">Voksne:</label><input type="number" id="v" value="1" oninput="c()" class="w-full p-2 rounded-xl border-2 text-center font-bold bg-white text-black"></div>
-                    <div><label class="block text-[10px] font-bold uppercase mb-1">Børn:</label><input type="number" id="b" value="0" oninput="c()" class="w-full p-2 rounded-xl border-2 text-center font-bold bg-white text-black"></div>
-                    <div><label class="block text-[10px] font-bold uppercase mb-1">Kæledyr:</label><input type="number" id="k" value="0" oninput="c()" class="w-full p-2 rounded-xl border-2 text-center font-bold bg-white text-black"></div>
+        t: "Skaffeliste", 
+        h: `<div class="space-y-8">
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="text-center"><label class="text-[10px] font-bold uppercase">Voksne</label><input type="number" id="v" value="1" oninput="c()" class="w-full p-4 rounded-2xl text-center text-2xl"></div>
+                    <div class="text-center"><label class="text-[10px] font-bold uppercase">Børn</label><input type="number" id="b" value="0" oninput="c()" class="w-full p-4 rounded-2xl text-center text-2xl"></div>
+                    <div class="text-center"><label class="text-[10px] font-bold uppercase">Kæledyr</label><input type="number" id="k" value="0" oninput="c()" class="w-full p-4 rounded-2xl text-center text-2xl"></div>
                 </div>
-                <div class="p-6 bg-green-50 rounded-3xl border-2 border-green-100 space-y-3">
-                    <p class="text-[10px] font-black uppercase text-green-800 italic">Tjek dit lager (fratrækkes):</p>
-                    <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" id="h_v" onchange="c()" class="w-5 h-5 accent-green-800"> <span class="text-sm italic">Jeg har vand i kander (ca. 3L)</span></label>
-                    <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" id="h_m" onchange="c()" class="w-5 h-5 accent-green-800"> <span class="text-sm italic">Jeg har mad til dag 1 i skabet</span></label>
+                
+                <div class="space-y-4 bg-green-50 p-6 rounded-[2rem] border-2 border-green-100">
+                    <p class="font-bold text-green-800 uppercase text-xs tracking-widest">Tjek dit lager:</p>
+                    <label class="flex items-center space-x-3"><input type="checkbox" id="h_v" onchange="c()" class="w-6 h-6"> <span>Har vand i kander/flasker</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" id="h_m" onchange="c()" class="w-6 h-6"> <span>Har mad til dag 1 i skabet</span></label>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="p-4 border-2 border-blue-100 rounded-2xl bg-blue-50/30"><p class="text-[10px] uppercase font-bold text-blue-800">Vand (Skaffes):</p><p id="res_v" class="text-3xl font-black text-blue-900">9L</p><p id="tot_v" class="text-[10px] text-gray-400 italic">Total behov: 9L</p></div>
-                    <div class="p-4 border-2 border-orange-100 rounded-2xl bg-orange-50/30"><p class="text-[10px] uppercase font-bold text-orange-800">Mad (Skaffes):</p><p id="res_m" class="text-3xl font-black text-orange-900">6 stk</p><p id="tot_m" class="text-[10px] text-gray-400 italic">Total behov: 9 stk</p></div>
+
+                <div class="space-y-6">
+                    <div class="flex justify-between items-end border-b-4 border-blue-100 pb-2">
+                        <div><p class="text-blue-600 font-bold uppercase text-xs">Drikkevand:</p><p id="buy_v" class="text-4xl font-black text-blue-900">9L</p></div>
+                        <p id="pack_v" class="text-xs font-bold text-blue-400 italic">Svarer til 6 flasker á 1.5L</p>
+                    </div>
+                    <div class="flex justify-between items-end border-b-4 border-orange-100 pb-2">
+                        <div><p class="text-orange-600 font-bold uppercase text-xs">Konserves/Mad:</p><p id="buy_m" class="text-4xl font-black text-orange-900">9 enheder</p></div>
+                        <p id="pack_m" class="text-xs font-bold text-orange-400 italic">Dækker 3 døgn pr. person</p>
+                    </div>
                 </div>
             </div>`
     },
     list: { 
-        t: "TLF. Kontakter", 
-        h: `<div class="space-y-4"><p class="text-sm font-bold">Skriv navne og numre herunder:</p>
-            <textarea id="ntxt" class="w-full h-48 p-4 border-2 rounded-2xl outline-none bg-white text-black font-semibold" placeholder="Navn: 12 34 56 78..."></textarea>
-            <div class="flex gap-2"><button onclick="window.print()" class="flex-1 py-3 bg-gray-800 text-white rounded-xl font-bold uppercase text-xs">Print</button>
-            <button onclick="em()" class="flex-1 py-3 bg-green-700 text-white rounded-xl font-bold uppercase text-xs">Email</button></div></div>`
+        t: "Nødliste", 
+        h: `<textarea id="ntxt" class="w-full h-64 p-6 rounded-[2rem] outline-none text-xl mb-4" placeholder="Navn & Nummer..."></textarea>
+            <div class="flex gap-4"><button onclick="window.print()" class="flex-1 py-4 bg-gray-900 text-white rounded-2xl font-bold uppercase">Print</button>
+            <button onclick="em()" class="flex-1 py-4 bg-green-700 text-white rounded-2xl font-bold uppercase">Email</button></div>`
     },
-    gear: { t: "Strategisk Grej", h: "Tjek: Lommelygte, batterier og nødradio. Mangel: Har du udstyr til alle i husstanden?" },
-    power: { t: "Energi Buffer", h: "Tjek: Powerbank opladning. Mangel: Minimum 20.000 mAh ekstra pr. husstand anbefales." },
-    info: { t: "Kritisk Information", h: "Tjek: Kan du modtage DR P4 uden strøm? Skaf nødradio med håndsving." }
+    gear: { t: "Grej", h: "Pandelampe, LED-lygte og ekstra batterier. Hold det samlet i én kasse." },
+    power: { t: "Energi", h: "Powerbank (min. 20.000 mAh) og ladekabel. Skal altid være 80% opladet." },
+    info: { t: "Information", h: "Nødradio med håndsving eller batterier. Myndigheds-info sendes via DR P4." }
 };
 
 function c() {
     const v = parseInt(document.getElementById('v').value) || 0;
     const b = parseInt(document.getElementById('b').value) || 0;
     const k = parseInt(document.getElementById('k').value) || 0;
-    const hasVand = document.getElementById('h_v').checked;
-    const hasMad = document.getElementById('h_m').checked;
-    const totalVand = ((v + b) * 9) + (k * 3);
-    const mangelVand = hasVand ? Math.max(0, totalVand - 3) : totalVand;
-    const totalMad = (v + b) * 9;
-    const mangelMad = hasMad ? Math.max(0, totalMad - 3) : totalMad;
-    document.getElementById('res_v').innerText = mangelVand + "L";
-    document.getElementById('tot_v').innerText = "Total behov: " + totalVand + "L";
-    document.getElementById('res_m').innerText = mangelMad + " stk";
-    document.getElementById('tot_m').innerText = "Total behov: " + totalMad + " stk";
+    const hasV = document.getElementById('h_v').checked;
+    const hasM = document.getElementById('h_m').checked;
+
+    const totV = ((v + b) * 9) + (k * 3);
+    const buyV = hasV ? Math.max(0, totV - 3) : totV;
+    const totM = (v + b) * 9;
+    const buyM = hasM ? Math.max(0, totM - 3) : totM;
+
+    document.getElementById('buy_v').innerText = buyV + "L";
+    document.getElementById('pack_v').innerText = "Skaffes: " + Math.ceil(buyV / 1.5) + " stk 1.5L flasker";
+    document.getElementById('buy_m').innerText = buyM + " enheder";
+    document.getElementById('pack_m').innerText = "Supplering til " + (v+b) + " personer";
 }
 
-function em() { window.location.href = "mailto:?subject=NØDLISTE&body=" + encodeURIComponent(document.getElementById('ntxt').value); }
+function em() { window.location.href = "mailto:?subject=Min Nødliste&body=" + encodeURIComponent(document.getElementById('ntxt').value); }
 function openM(k) { document.getElementById('m-title').innerText = data[k].t; document.getElementById('m-body').innerHTML = data[k].h; document.getElementById('m-box').classList.remove('hidden'); if(k==='calc') c(); }
-function closeM() { document.getElementById('m-box').classList.add('hidden'); }
+function closeModal() { document.getElementById('m-box').classList.add('hidden'); }
+function closeM() { closeModal(); }
 </script>
