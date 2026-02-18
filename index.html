@@ -5,96 +5,100 @@ layout: page
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com" rel="stylesheet">
 
-<!-- TVUNGET LYST TEMA CSS -->
 <style>
-    :root { --main-wrapper-bg: #F9FAFB !important; --sidebar-bg: #ffffff !important; }
+    /* Fjerner sidebar og tvinger fuld bredde */
+    #sidebar, #topbar { display: none !important; }
+    #main-wrapper { margin-left: 0 !important; padding: 0 !important; width: 100% !important; max-width: 100% !important; background-color: #F9FAFB !important; }
+    #main { max-width: 100% !important; }
+    .post-content { padding: 0 !important; }
+    
     body { background-color: #F9FAFB !important; color: #1a3317 !important; font-family: 'Open Sans', sans-serif; }
     h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
-    .dark-force-none { background-color: white !important; color: black !important; }
 </style>
 
-<div class="max-w-5xl mx-auto px-4 py-10 space-y-16">
+<div class="max-w-4xl mx-auto px-4 py-16 space-y-20">
     
-    <!-- NY HERO TEKST -->
-    <header class="text-center py-6">
-        <h1 class="text-4xl md:text-5xl font-extrabold text-green-900 tracking-tight">Prepping behov og mangler.</h1>
-        <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto font-semibold">Smart Prepping. .Der hjemme.</p>
+    <!-- NY TEKST STRUKTUR -->
+    <header class="text-center space-y-4">
+        <h1 class="text-5xl md:text-7xl font-black text-green-900 tracking-tighter uppercase italic">Prepping</h1>
+        <p class="text-2xl md:text-3xl font-bold text-gray-700 uppercase tracking-widest">Behov og mangler</p>
+        <div class="h-1 w-20 bg-green-700 mx-auto my-6"></div>
+        <p class="text-xl text-green-800 font-bold italic">Smart Prepping. Vores Husholdning.</p>
     </header>
 
-    <!-- NYT IKON-LAYOUT (NU MED BEREGNER) -->
+    <!-- KATEGORI GRID -->
     <section>
-        <h2 class="text-2xl font-bold text-center text-green-900 mb-12 uppercase tracking-widest">Vælg kategori</h2>
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-            <!-- Beregner Ikon -->
-            <button onclick="showInfo('beregner')" class="p-6 bg-white border-2 border-green-700 rounded-3xl shadow-lg hover:bg-green-50 transition-all">
-                <span class="text-5xl block mb-2">🧮</span><p class="font-black text-xs uppercase tracking-widest text-green-800">Beregner</p>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+            <button onclick="openM('calc')" class="p-8 bg-white border-2 border-green-800 rounded-[2.5rem] shadow-xl hover:bg-green-50 transition-all">
+                <span class="text-5xl block mb-2">🧮</span><p class="font-black text-xs uppercase text-green-900">Beregner</p>
             </button>
-            <!-- Lommelygte -->
-            <button onclick="showInfo('lommelygte')" class="p-6 bg-white border border-gray-200 rounded-3xl shadow-sm hover:scale-105 transition-all">
-                <span class="text-5xl block mb-2">🔦</span><p class="font-bold text-xs uppercase tracking-widest text-gray-600">Grej</p>
+            <button onclick="openM('gear')" class="p-8 bg-white border border-gray-200 rounded-[2.5rem] shadow-sm hover:scale-105 transition-all">
+                <span class="text-5xl block mb-2">🔦</span><p class="font-bold text-xs uppercase text-gray-500">Grej</p>
             </button>
-            <!-- Powerbank -->
-            <button onclick="showInfo('powerbank')" class="p-6 bg-white border border-gray-200 rounded-3xl shadow-sm hover:scale-105 transition-all">
-                <span class="text-5xl block mb-2">🔋</span><p class="font-bold text-xs uppercase tracking-widest text-gray-600">Energi</p>
+            <button onclick="openM('power')" class="p-8 bg-white border border-gray-200 rounded-[2.5rem] shadow-sm hover:scale-105 transition-all">
+                <span class="text-5xl block mb-2">🔋</span><p class="font-bold text-xs uppercase text-gray-500">Energi</p>
             </button>
-            <!-- FM Radio -->
-            <button onclick="showInfo('fmradio')" class="p-6 bg-white border border-gray-200 rounded-3xl shadow-sm hover:scale-105 transition-all">
-                <span class="text-5xl block mb-2">📻</span><p class="font-bold text-xs uppercase tracking-widest text-gray-600">Info</p>
+            <button onclick="openM('info')" class="p-8 bg-white border border-gray-200 rounded-[2.5rem] shadow-sm hover:scale-105 transition-all">
+                <span class="text-5xl block mb-2">📻</span><p class="font-bold text-xs uppercase text-gray-500">Info</p>
             </button>
-            <!-- Telefonliste -->
-            <button onclick="showInfo('telefon')" class="p-6 bg-white border border-gray-200 rounded-3xl shadow-sm hover:scale-105 transition-all">
-                <span class="text-5xl block mb-2">📝</span><p class="font-bold text-xs uppercase tracking-widest text-gray-600">Kontakt</p>
+            <button onclick="openM('list')" class="p-8 bg-white border border-gray-200 rounded-[2.5rem] shadow-sm hover:scale-105 transition-all">
+                <span class="text-5xl block mb-2">📝</span><p class="font-bold text-xs uppercase text-gray-500">Kontakt</p>
             </button>
         </div>
     </section>
 </div>
 
-<!-- MODAL (MED INDBYGGET BEREGNER) -->
-<div id="modal" class="fixed inset-0 bg-black/60 hidden z-[9999] flex items-center justify-center p-4 backdrop-blur-md">
-    <div class="bg-white rounded-[2.5rem] p-10 max-w-lg w-full shadow-2xl relative border-t-[12px] border-green-800">
-        <h3 id="modalTitle" class="text-3xl font-black text-green-900 mb-4 uppercase italic"></h3>
-        <div id="modalContent" class="text-gray-700 leading-relaxed"></div>
-        <button onclick="closeModal()" class="mt-8 w-full py-4 bg-green-900 text-white rounded-2xl font-bold uppercase tracking-widest hover:bg-black transition">Forstået</button>
+<!-- MODAL SYSTEM -->
+<div id="m-box" class="fixed inset-0 bg-black/70 hidden z-[9999] flex items-center justify-center p-4 backdrop-blur-md">
+    <div class="bg-white rounded-[3rem] p-10 max-w-xl w-full shadow-2xl relative border-t-[15px] border-green-900">
+        <h3 id="m-title" class="text-3xl font-black text-green-900 mb-6 uppercase italic tracking-tighter"></h3>
+        <div id="m-body" class="text-gray-700 mb-8"></div>
+        <button onclick="closeM()" class="w-full py-5 bg-green-900 text-white rounded-2xl font-black uppercase tracking-widest hover:bg-black transition-all">OK LUK</button>
     </div>
 </div>
 
 <script>
-const gearInfo = {
-    beregner: { 
-        title: "Behovs Beregner", 
-        html: `
-            <div class="space-y-4 bg-gray-50 p-6 rounded-2xl border border-gray-200">
-                <div class="flex justify-between items-center">
-                    <label class="font-bold">Voksne + Børn</label>
-                    <input type="number" id="v_in" value="1" min="1" oninput="doCalc()" class="w-16 p-2 rounded-lg border text-center font-bold">
-                </div>
-                <div class="flex justify-between items-center">
-                    <label class="font-bold">Kæledyr</label>
-                    <input type="number" id="k_in" value="0" min="0" oninput="doCalc()" class="w-16 p-2 rounded-lg border text-center font-bold">
-                </div>
-                <div class="pt-4 border-t flex justify-between items-center">
-                    <span class="font-black uppercase text-green-800">Vandbehov (3 døgn):</span>
-                    <span id="w_out" class="text-3xl font-black text-green-700">9L</span>
-                </div>
+const data = {
+    calc: { 
+        t: "Behovs Beregner", 
+        h: `<div class="bg-gray-50 p-6 rounded-3xl border-2 border-gray-100 space-y-6">
+                <div class="flex justify-between items-center text-lg"><span>Personer:</span><input type="number" id="v" value="1" oninput="c()" class="w-20 p-2 rounded-xl border-2 text-center font-bold"></div>
+                <div class="flex justify-between items-center text-lg"><span>Kæledyr:</span><input type="number" id="k" value="0" oninput="c()" class="w-20 p-2 rounded-xl border-2 text-center font-bold"></div>
+                <div class="pt-6 border-t-2 flex justify-between items-center text-green-900"><span class="font-black uppercase">Vand (3 døgn):</span><span id="res" class="text-4xl font-black">9L</span></div>
             </div>`
     },
-    lommelygte: { title: "Strategisk Lys", html: "Forslag: En pandelampe + en robust LED-lygte. Brug Lithium batterier for 10 års holdbarhed." },
-    powerbank: { title: "Energireserve", html: "Minimum 20.000 mAh anbefales. Tip: Hold den 80% opladet i skabet." },
-    fmradio: { title: "Kritisk Info", html: "Nødradio med håndsving eller batterier. Husk at DR P4 er din nødkanal." },
-    telefon: { title: "Analoge Kontakter", html: "Print en liste med nærmeste familie og læge. <br><br><a href='mailto:?subject=Min Nødliste' class='text-green-700 font-bold underline'>Send nødliste via Email</a>" }
+    gear: { t: "Strategisk Grej", h: "Pandelampe og robust LED-lygte er basis. Prioritér udstyr der kan betjenes med én hånd." },
+    power: { t: "Energi Buffer", h: "20.000 mAh Powerbank er standarden. Husk at rotere batterier hvert 2. år." },
+    info: { t: "Kritisk Information", h: "Nødradio med håndsving. Din primære kilde til myndighedsbeskeder er DR P4." },
+    list: { 
+        t: "TLF. Kontakter", 
+        h: `<div class="space-y-4">
+                <p class="font-bold">Indtast vigtige numre (Læge, Mor, Nabo):</p>
+                <textarea id="ntxt" class="w-full h-32 p-4 border-2 rounded-2xl outline-none focus:border-green-700" placeholder="Navn: 12 34 56 78..."></textarea>
+                <div class="flex gap-2">
+                    <button onclick="window.print()" class="flex-1 py-3 bg-gray-800 text-white rounded-xl font-bold uppercase text-xs">Print Liste</button>
+                    <button onclick="em()" class="flex-1 py-3 bg-green-700 text-white rounded-xl font-bold uppercase text-xs">Send Email</button>
+                </div>
+            </div>`
+    }
 };
 
-function doCalc() {
-    const v = parseInt(document.getElementById('v_in').value) || 0;
-    const k = parseInt(document.getElementById('k_in').value) || 0;
-    document.getElementById('w_out').innerText = (v * 9) + (k * 3) + "L";
+function c() {
+    const v = parseInt(document.getElementById('v').value) || 0;
+    const k = parseInt(document.getElementById('k').value) || 0;
+    document.getElementById('res').innerText = (v * 9) + (k * 3) + "L";
 }
 
-function showInfo(key) {
-    document.getElementById('modalTitle').innerText = gearInfo[key].title;
-    document.getElementById('modalContent').innerHTML = gearInfo[key].html;
-    document.getElementById('modal').classList.remove('hidden');
+function em() {
+    const t = document.getElementById('ntxt').value;
+    window.location.href = "mailto:?subject=MIN NØDLISTE&body=" + encodeURIComponent(t);
 }
 
-function closeModal() { document.getElementById('modal').classList.add('hidden'); }
+function openM(k) {
+    document.getElementById('m-title').innerText = data[k].t;
+    document.getElementById('m-body').innerHTML = data[k].h;
+    document.getElementById('m-box').classList.remove('hidden');
+}
+
+function closeM() { document.getElementById('m-box').classList.add('hidden'); }
 </script>
