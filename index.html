@@ -6,51 +6,56 @@ layout: page
 <link href="https://fonts.googleapis.com" rel="stylesheet">
 
 <style>
-    :root { --main-wrapper-bg: #ffffff !important; }
+    /* RADIKAL RYDNING AF TEMA */
     #sidebar, #topbar, #footer, .post-meta, .post-title, #access-lastmod { display: none !important; }
     #main-wrapper { margin: 0 !important; padding: 0 !important; width: 100% !important; background-color: #ffffff !important; }
     body { background-color: #ffffff !important; color: #1a3317 !important; font-family: 'Open Sans', sans-serif; }
-    input, select, textarea { background-color: #ffffff !important; color: #000000 !important; border: 2px solid #2D5A27 !important; padding: 12px; border-radius: 12px; font-weight: bold; width: 100%; }
+    
+    /* MODAL & WIZARD */
     .step-node { display: none; }
-    .step-node.active { display: block; }
+    .step-node.active { display: block; animation: fadeIn 0.3s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    input, select, textarea { background-color: #ffffff !important; color: #000000 !important; border: 2px solid #2D5A27 !important; padding: 12px; border-radius: 12px; width: 100%; font-weight: bold; }
+    label { font-weight: 800; font-size: 0.75rem; text-transform: uppercase; color: #2D5A27; margin-bottom: 0.5rem; display: block; }
 </style>
 
+<!-- SPROGVÆLGER -->
 <div class="fixed top-6 right-6 z-50">
     <button onclick="toggleLang()" id="lang-btn" class="bg-green-900 text-white px-6 py-2 rounded-full font-black text-xs uppercase tracking-widest shadow-lg">EN</button>
 </div>
 
 <div class="min-h-screen bg-white flex flex-col items-center px-4 py-12 md:py-20 space-y-16">
     <header class="text-center space-y-4">
-        <h1 id="main-title" class="text-6xl md:text-8xl font-black text-green-900 tracking-tighter uppercase italic tracking-widest">Prepping</h1>
+        <h1 id="main-title" class="text-6xl md:text-8xl font-black text-green-900 tracking-tighter uppercase italic">Prepping</h1>
         <p id="sub-title" class="text-xl md:text-3xl font-bold text-gray-400 uppercase tracking-[0.3em]">Behov og mangler</p>
         <div class="h-2 w-32 bg-green-700 mx-auto my-6"></div>
-        <p id="tagline" class="text-xl text-green-800 font-bold italic">Smart Prepping. Vores Husholdning.</p>
+        <p id="tagline" class="text-xl text-green-800 font-bold italic font-black">Smart Prepping. Vores Husholdning.</p>
     </header>
 
     <nav class="grid grid-cols-2 md:grid-cols-5 gap-6 w-full max-w-6xl text-center">
-        <button onclick="openM('calc')" class="p-8 bg-white border-4 border-green-900 rounded-[3rem] shadow-xl hover:bg-green-50 transition-all flex flex-col items-center">
+        <button onclick="openM('calc')" class="p-8 bg-white border-4 border-green-800 rounded-[3rem] shadow-xl hover:bg-green-50 transition-all flex flex-col items-center">
             <span class="text-6xl mb-4">🧮</span><p id="nav-calc" class="font-black text-xs uppercase text-green-900 tracking-widest">Beregner</p>
         </button>
-        <button onclick="openM('gear')" class="p-8 bg-white border-2 border-gray-100 rounded-[3rem] shadow-sm hover:scale-105 transition-all flex flex-col items-center">
-            <span class="text-6xl mb-4">🔦</span><p id="nav-gear" class="font-bold text-xs uppercase text-gray-400">Grej</p>
+        <button onclick="openM('gear')" class="p-8 bg-white border-2 border-gray-100 rounded-[3rem] shadow-sm hover:scale-105 transition-all flex flex-col items-center text-gray-400 italic">
+            <span class="text-6xl mb-4">🔦</span><p id="nav-gear" class="font-bold text-xs uppercase italic">Grej</p>
         </button>
-        <button onclick="openM('power')" class="p-8 bg-white border-2 border-gray-100 rounded-[3rem] shadow-sm hover:scale-105 transition-all flex flex-col items-center">
-            <span class="text-6xl mb-4">🔋</span><p id="nav-power" class="font-bold text-xs uppercase text-gray-400">Energi</p>
+        <button onclick="openM('power')" class="p-8 bg-white border-2 border-gray-100 rounded-[3rem] shadow-sm hover:scale-105 transition-all flex flex-col items-center text-gray-400 italic">
+            <span class="text-6xl mb-4">🔋</span><p id="nav-power" class="font-bold text-xs uppercase italic">Energi</p>
         </button>
-        <button onclick="openM('info')" class="p-8 bg-white border-2 border-gray-100 rounded-[3rem] shadow-sm hover:scale-105 transition-all flex flex-col items-center">
-            <span class="text-6xl mb-4">📻</span><p id="nav-info" class="font-bold text-xs uppercase text-gray-400">Info</p>
+        <button onclick="openM('info')" class="p-8 bg-white border-2 border-gray-100 rounded-[3rem] shadow-sm hover:scale-105 transition-all flex flex-col items-center text-gray-400 italic">
+            <span class="text-6xl mb-4">📻</span><p id="nav-info" class="font-bold text-xs uppercase italic">Info</p>
         </button>
-        <button onclick="openM('list')" class="p-8 bg-white border-2 border-gray-100 rounded-[3rem] shadow-sm hover:scale-105 transition-all flex flex-col items-center">
-            <span class="text-6xl mb-4">📝</span><p id="nav-list" class="font-bold text-xs uppercase text-gray-400">Kontakt</p>
+        <button onclick="openM('list')" class="p-8 bg-white border-2 border-gray-100 rounded-[3rem] shadow-sm hover:scale-105 transition-all flex flex-col items-center text-gray-400 italic">
+            <span class="text-6xl mb-4">📝</span><p id="nav-list" class="font-bold text-xs uppercase italic">Kontakt</p>
         </button>
     </nav>
 </div>
 
 <div id="m-box" class="fixed inset-0 bg-green-900/60 hidden z-50 flex items-center justify-center p-4 backdrop-blur-md">
     <div class="bg-white rounded-[4rem] p-10 md:p-14 max-w-3xl w-full shadow-2xl relative border-t-[20px] border-green-900 overflow-y-auto max-h-[90vh]">
-        <h3 id="m-title" class="text-4xl font-black text-green-900 mb-8 uppercase italic italic"></h3>
+        <h3 id="m-title" class="text-4xl font-black text-green-900 mb-8 uppercase italic tracking-tighter italic"></h3>
         <div id="m-body" class="mb-10 text-gray-800 text-lg"></div>
-        <button onclick="closeM()" id="close-btn" class="w-full py-5 bg-green-900 text-white rounded-3xl font-black uppercase tracking-widest hover:bg-black transition-all">OK LUK</button>
+        <button onclick="closeM()" id="close-btn" class="w-full py-5 bg-green-900 text-white rounded-2xl font-black uppercase tracking-widest hover:bg-black transition-all italic font-black uppercase">OK LUK</button>
     </div>
 </div>
 
@@ -61,48 +66,54 @@ layout: page
         en: { title: "Prepping", sub: "Needs and Gaps", tag: "Smart Prepping. Our Household.", calc: "Calculator", gear: "Gear", power: "Energy", info: "Info", list: "Contact", close: "OK CLOSE", wizT: "Safe and Ready" }
     };
 
-    function toggleLang() {
-        curLang = curLang === 'da' ? 'en' : 'da';
-        document.getElementById('lang-btn').innerText = curLang === 'da' ? 'EN' : 'DK';
-        updateUI();
-    }
-
-    function updateUI() {
-        const t = trans[curLang];
-        document.getElementById('main-title').innerText = t.title;
-        document.getElementById('sub-title').innerText = t.sub;
-        document.getElementById('tagline').innerText = t.tag;
-        document.getElementById('nav-calc').innerText = t.calc;
-        document.getElementById('nav-gear').innerText = t.gear;
-        document.getElementById('nav-power').innerText = t.power;
-        document.getElementById('nav-info').innerText = t.info;
-        document.getElementById('nav-list').innerText = t.list;
-        document.getElementById('close-btn').innerText = t.close;
-    }
+    function toggleLang() { curLang = curLang === 'da' ? 'en' : 'da'; document.getElementById('lang-btn').innerText = curLang === 'da' ? 'EN' : 'DK'; updateUI(); }
+    function updateUI() { const t = trans[curLang]; document.getElementById('main-title').innerText = t.title; document.getElementById('sub-title').innerText = t.sub; document.getElementById('tagline').innerText = t.tag; document.getElementById('nav-calc').innerText = t.calc; document.getElementById('nav-gear').innerText = t.gear; document.getElementById('nav-power').innerText = t.power; document.getElementById('nav-info').innerText = t.info; document.getElementById('nav-list').innerText = t.list; document.getElementById('close-btn').innerText = t.close; }
 
     function getWizardHTML() {
         return `
-        <div id="wiz-flow" class="space-y-8">
-            <div id="step-1" class="step-node active space-y-6">
-                <p class="text-2xl font-black text-green-900 italic underline uppercase italic">Trin 1: Husstanden</p>
-                <div class="grid grid-cols-2 gap-4">
-                    <div><label>Voksne</label><input type="number" id="v_in" value="1"></div>
-                    <div><label>Børn</label><input type="number" id="b_in" value="0"></div>
-                </div>
-                <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" id="pet_in" class="w-6 h-6 accent-green-900"> <span class="font-bold italic">Har du kæledyr?</span></label>
-                <button onclick="goW(2)" class="w-full py-5 bg-green-900 text-white rounded-2xl font-black uppercase italic tracking-widest shadow-lg">Næste: Valg →</button>
+        <div id="wiz-flow" class="space-y-6">
+            <!-- TRIN 1: HUSSTAND -->
+            <div id="step-1" class="step-node active space-y-4">
+                <p class="font-black text-green-900 uppercase italic underline italic">Lidt om din husstand</p>
+                <label>Voksne</label><input type="number" id="v_in" value="1">
+                <label>Børn</label><input type="number" id="b_in" value="0">
+                <label class="flex items-center space-x-2"><input type="checkbox" id="pet_in" class="w-6 h-6"> <span>Har du kæledyr?</span></label>
+                <button onclick="goW(2)" class="w-full py-4 bg-green-900 text-white rounded-xl font-black uppercase">Næste: Mad →</button>
             </div>
-            <div id="step-2" class="step-node space-y-6">
-                <p class="text-2xl font-black text-green-900 italic underline uppercase italic">Trin 2: Præferencer</p>
-                <label>Foretrækker I varm eller kold mad?</label>
-                <select id="f_type"><option value="kold">Kold mad (Kræver ikke kogning)</option><option value="varm">Varm mad (Kræver stormkøkken)</option></select>
-                <label class="flex items-center space-x-3"><input type="checkbox" id="med_in" class="w-6 h-6 accent-green-900"> <span class="font-bold italic">Receptpligtig medicin i huset?</span></label>
-                <button onclick="calculateFinal(); goW(3)" class="w-full py-5 bg-green-900 text-white rounded-2xl font-black uppercase italic tracking-widest shadow-lg">Se din Huskeliste →</button>
+            <!-- TRIN 2: MAD -->
+            <div id="step-2" class="step-node space-y-4">
+                <p class="font-black text-green-900 uppercase italic underline italic">Mad & Hygge</p>
+                <label>Varm eller kold mad?</label><select id="f_temp"><option>Vælg</option><option>Varm</option><option>Kold</option></select>
+                <label>Madpræferencer</label><input type="text" id="f_pref" placeholder="Ingen">
+                <button onclick="goW(3)" class="w-full py-4 bg-green-900 text-white rounded-xl font-black uppercase">Næste: Medicin →</button>
             </div>
-            <div id="step-3" class="step-node space-y-6">
-                <p class="text-3xl font-black text-green-900 italic uppercase underline italic">Din Officielle Huskeliste:</p>
+            <!-- TRIN 3: MEDICIN -->
+            <div id="step-3" class="step-node space-y-4">
+                <p class="font-black text-green-900 uppercase italic underline italic">Medicin & Lys</p>
+                <label class="flex items-center space-x-2"><input type="checkbox" id="med_recept" class="w-5 h-5"> <span>Receptpligtig medicin?</span></label>
+                <label class="flex items-center space-x-2"><input type="checkbox" id="med_jod" class="w-5 h-5"> <span>Har jodtabletter?</span></label>
+                <label class="flex items-center space-x-2"><input type="checkbox" id="light_fix" class="w-5 h-5"> <span>Har lommelygte?</span></label>
+                <button onclick="goW(4)" class="w-full py-4 bg-green-900 text-white rounded-xl font-black uppercase">Næste: Energi & Info →</button>
+            </div>
+            <!-- TRIN 4: ENERGI & INFO -->
+            <div id="step-4" class="step-node space-y-4">
+                <p class="font-black text-green-900 uppercase italic underline italic">Energi & Kommunikation</p>
+                <label class="flex items-center space-x-2"><input type="checkbox" id="p_bank" class="w-5 h-5"> <span>Har powerbank?</span></label>
+                <label class="flex items-center space-x-2"><input type="checkbox" id="radio_fm" class="w-5 h-5"> <span>Har FM-radio?</span></label>
+                <button onclick="goW(5)" class="w-full py-4 bg-green-900 text-white rounded-xl font-black uppercase">Næste: Planen →</button>
+            </div>
+            <!-- TRIN 5: PLANEN -->
+            <div id="step-5" class="step-node space-y-4">
+                <p class="font-black text-green-900 uppercase italic underline italic">Din Plan</p>
+                <label>Hvor mødes I?</label><input type="text" id="p_meet" placeholder="F.eks. Hjemme">
+                <label>Hvem har brug for hjælp?</label><input type="text" id="p_help" placeholder="Navn på nabo">
+                <button onclick="calculateFinal(); goW(6)" class="w-full py-5 bg-green-900 text-white rounded-xl font-black uppercase italic tracking-widest shadow-lg">Se min fulde liste →</button>
+            </div>
+            <!-- TRIN 6: RESULTAT -->
+            <div id="step-6" class="step-node space-y-4 text-sm font-bold">
+                <p class="text-2xl font-black text-green-900 italic underline uppercase italic">Din Huskeliste:</p>
                 <div id="final-res" class="space-y-4"></div>
-                <button onclick="goW(1)" class="w-full py-2 text-xs font-bold uppercase text-gray-400">Start forfra</button>
+                <button onclick="goW(1)" class="w-full py-2 text-xs font-bold uppercase text-gray-400 italic">Start forfra</button>
             </div>
         </div>`;
     }
@@ -110,41 +121,28 @@ layout: page
     function calculateFinal() {
         const v = parseInt(document.getElementById('v_in').value) || 0;
         const b = parseInt(document.getElementById('b_in').value) || 0;
-        const p = document.getElementById('pet_in').checked;
-        const med = document.getElementById('med_in').checked;
-        const totalPeople = v + b;
-        const water = (totalPeople * 9) + (p ? 3 : 0);
-
+        const pet = document.getElementById('pet_in').checked;
+        const water = ((v + b) * 9) + (pet ? 3 : 0);
         document.getElementById('final-res').innerHTML = `
-            <div class="p-6 bg-blue-50 border-l-[12px] border-blue-600 rounded-r-3xl shadow-md">
-                <p class="text-xs font-black uppercase text-blue-800 italic font-black">💧 Drikkevand (3 Døgn):</p>
-                <p class="text-4xl font-black text-blue-900 italic italic tracking-tighter italic">${water} Liter</p>
-                <p class="text-xs font-bold mt-2 text-blue-700 italic font-black uppercase tracking-widest italic font-black">Indkøb: ${Math.ceil(water/1.5)} flasker á 1.5L.</p>
+            <div class="p-6 bg-blue-50 border-l-[12px] border-blue-600 rounded-r-3xl">
+                <p class="text-[10px] font-black uppercase text-blue-800 italic">💧 Drikkevand (Skaffes):</p>
+                <p class="text-4xl font-black text-blue-900 italic italic">${water} Liter</p>
+                <p class="text-xs italic text-blue-700 italic font-black uppercase tracking-widest mt-1 italic font-black">${Math.ceil(water/1.5)} flasker á 1.5L.</p>
             </div>
-            <div class="p-6 bg-orange-50 border-l-[12px] border-orange-600 rounded-r-3xl shadow-md">
-                <p class="text-xs font-black uppercase text-orange-800 italic font-black">🥫 Madlager (3 Døgn):</p>
-                <p class="text-2xl font-black text-orange-900 italic italic tracking-tighter italic">${totalPeople * 9} måltider totalt</p>
-                <p class="text-xs text-orange-700 italic italic font-black italic mt-1 uppercase italic italic font-black">Forslag: Konserves, rugbrød, nødder, chokolade.</p>
+            <div class="p-6 bg-orange-50 border-l-[12px] border-orange-600 rounded-r-3xl font-bold">
+                <p class="text-[10px] font-black uppercase text-orange-800 italic">🥫 Mad (3 døgn):</p>
+                <p class="text-2xl font-black text-orange-900 italic italic tracking-tighter italic">${(v+b)*9} måltider (${document.getElementById('f_temp').value})</p>
             </div>
-            <div class="p-4 bg-gray-50 border-2 border-gray-200 rounded-2xl space-y-2">
-                <p class="text-xs font-black uppercase text-green-900 italic font-black italic">Tjekliste Grej:</p>
-                <p class="text-xs font-bold italic">• ${med ? 'Husk medicin-buffer (7 dage)' : 'Tjek husapotek'}</p>
-                <p class="text-xs font-bold italic">• FM-radio m. batterier / håndsving</p>
-                <p class="text-xs font-bold italic">• Lommelygte + Batterier</p>
-                <p class="text-xs font-bold italic">• Powerbank (20.000 mAh)</p>
+            <div class="p-4 bg-gray-50 border-2 border-gray-200 rounded-2xl space-y-2 text-[10px] uppercase font-bold italic font-black">
+                <p>📍 Mødested: ${document.getElementById('p_meet').value || 'Ikke angivet'}</p>
+                <p>🆘 Hjælp: ${document.getElementById('p_help').value || 'Ingen'}</p>
+                <p>${document.getElementById('med_recept').checked ? '✅ Husk medicin-buffer' : '❌ Tjek medicin'}</p>
+                <p>${document.getElementById('radio_fm').checked ? '✅ FM-Radio OK' : '❌ Skaf FM-Radio'}</p>
             </div>`;
     }
 
-    function goW(n) {
-        document.querySelectorAll('.step-node').forEach(node => node.classList.remove('active'));
-        document.getElementById('step-' + n).classList.add('active');
-    }
-
-    function openM(k) { 
-        document.getElementById('m-title').innerText = k === 'calc' ? trans[curLang].wizT : trans[curLang][k]; 
-        document.getElementById('m-body').innerHTML = k === 'calc' ? getWizardHTML() : "Information under opdatering.";
-        document.getElementById('m-box').classList.remove('hidden'); 
-    }
+    function goW(n) { document.querySelectorAll('.step-node').forEach(node => node.classList.remove('active')); document.getElementById('step-' + n).classList.add('active'); }
+    function openM(k) { document.getElementById('m-title').innerText = k === 'calc' ? trans[curLang].wizT : trans[curLang][k]; document.getElementById('m-body').innerHTML = k === 'calc' ? getWizardHTML() : "Information udrulles snarest."; document.getElementById('m-box').classList.remove('hidden'); }
     function closeM() { document.getElementById('m-box').classList.add('hidden'); }
     updateUI();
 </script>
