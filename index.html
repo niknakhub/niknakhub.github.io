@@ -6,20 +6,15 @@ layout: page
 <link href="https://fonts.googleapis.com" rel="stylesheet">
 
 <style>
-    /* ATOMIC CSS LOCK: DRÆBER ALT TEMA-STØJ */
-    #sidebar, #topbar, #footer, .post-meta, .post-title, #access-lastmod, .sidebar-wrapper, .topbar-wrapper { 
-        display: none !important; visibility: hidden !important; width: 0 !important; height: 0 !important; 
-    }
-    #main-wrapper { margin: 0 !important; padding: 0 !important; width: 100% !important; max-width: 100% !important; background-color: #ffffff !important; display: block !important; }
+    /* CSS NUKE: TVUNGET HVID BAGGRUND OG SKJULTE BJÆLKER */
+    :root { --main-wrapper-bg: #ffffff !important; }
+    #sidebar, #topbar, #footer, .post-meta, .post-title, #access-lastmod, #search-results { display: none !important; visibility: hidden !important; }
+    #main-wrapper { margin: 0 !important; padding: 0 !important; width: 100% !important; max-width: 100% !important; background-color: #ffffff !important; }
     #main { max-width: 100% !important; padding: 0 !important; background-color: #ffffff !important; }
-    #core-wrapper { padding: 0 !important; margin: 0 !important; }
-    .post-content { padding: 0 !important; margin: 0 !important; }
-    
     body { background-color: #ffffff !important; color: #1a3317 !important; font-family: 'Open Sans', sans-serif; overflow-x: hidden; }
-    h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
-
-    /* INPUTS SKAL VÆRE LYSE */
-    input, select, textarea { background-color: #ffffff !important; color: #000000 !important; border: 2px solid #2D5A27 !important; padding: 12px; border-radius: 12px; font-weight: bold; }
+    
+    /* INPUTS & MODALS */
+    input, select, textarea { background-color: #ffffff !important; color: #000000 !important; border: 2px solid #2D5A27 !important; padding: 12px; border-radius: 12px; font-weight: bold; width: 100%; }
     .step-node { display: none; }
     .step-node.active { display: block; animation: fadeIn 0.3s ease-in; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -31,15 +26,13 @@ layout: page
 </div>
 
 <div class="min-h-screen bg-white flex flex-col items-center px-4 py-12 md:py-24 space-y-16">
-    
     <header class="text-center space-y-4">
         <h1 id="main-title" class="text-6xl md:text-9xl font-black text-green-900 tracking-tighter uppercase italic">Prepping</h1>
         <p id="sub-title" class="text-xl md:text-3xl font-bold text-gray-400 uppercase tracking-[0.3em]">Behov og mangler</p>
         <div class="h-2 w-32 bg-green-700 mx-auto my-8"></div>
-        <p id="tagline" class="text-xl md:text-2xl text-green-800 font-bold italic">Smart Prepping. Vores Husholdning.</p>
+        <p id="tagline" class="text-xl md:text-2xl text-green-800 font-bold italic italic">Smart Prepping. Vores Husholdning.</p>
     </header>
 
-    <!-- DE 5 IKONER -->
     <nav class="grid grid-cols-2 md:grid-cols-5 gap-6 w-full max-w-6xl text-center">
         <button onclick="openM('calc')" class="p-8 bg-white border-4 border-green-900 rounded-[3rem] shadow-2xl hover:bg-green-50 transition-all flex flex-col items-center">
             <span class="text-6xl mb-4">🧮</span><p id="nav-calc" class="font-black text-xs uppercase text-green-900 tracking-widest">Beregner</p>
@@ -62,26 +55,46 @@ layout: page
 <!-- MODAL BOX -->
 <div id="m-box" class="fixed inset-0 bg-green-900/60 hidden z-50 flex items-center justify-center p-4 backdrop-blur-md">
     <div class="bg-white rounded-[4rem] p-10 md:p-16 max-w-3xl w-full shadow-[0_35px_60px_-15px_rgba(0,0,0,0.5)] relative border-t-[20px] border-green-900 overflow-y-auto max-h-[90vh]">
-        <h3 id="m-title" class="text-4xl font-black text-green-900 mb-8 uppercase italic tracking-tighter"></h3>
+        <h3 id="m-title" class="text-4xl font-black text-green-900 mb-8 uppercase italic tracking-tighter italic"></h3>
         <div id="m-body" class="mb-10 text-gray-800 text-lg"></div>
         <button onclick="closeM()" id="close-btn" class="w-full py-6 bg-green-900 text-white rounded-3xl font-black uppercase tracking-widest hover:bg-black transition-all shadow-xl">OK LUK</button>
     </div>
 </div>
 
 <script>
+    // JS-HAMMER: SLETTER TEMA-BJÆLKERNE NÅR SIDEN INDLÆSES
+    function nukeSidebar() {
+        const elements = ['sidebar', 'topbar', 'footer'];
+        elements.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        });
+        document.body.style.backgroundColor = "white";
+    }
+    window.onload = nukeSidebar;
+    setInterval(nukeSidebar, 500); // Kører hver halve sekund for at sikre de ikke popper op
+
     let curLang = 'da';
     const trans = {
         da: {
             title: "Prepping", sub: "Behov og mangler", tag: "Smart Prepping. Vores Husholdning.",
             calc: "Beregner", gear: "Grej", power: "Energi", info: "Info", list: "Kontakt", close: "OK LUK",
             wizT: "Tryg og klar", wiz1: "Husstand", v: "Voksne", b: "Børn", p: "Kæledyr?", nxt: "Næste →",
-            wiz2: "Mad & Vand", res: "Se huskeliste →", h: "Din Huskeliste"
+            wiz2: "Mad & Vand", res: "Se huskeliste →", h: "Din Huskeliste",
+            gearH: "Pandelampe, LED-lygte og ekstra batterier til 3 døgn. Opbevar det samlet i en vandtæt boks.",
+            powerH: "Minimum 20.000 mAh Powerbank anbefales. Husk ladekabler til alle familiens enheder.",
+            infoH: "Nødradio med håndsving eller batterier. Myndighedernes primære infokanal er DR P4.",
+            listH: "Indtast navne og vigtige telefonnumre herunder:"
         },
         en: {
             title: "Prepping", sub: "Needs and Gaps", tag: "Smart Prepping. Our Household.",
             calc: "Calculator", gear: "Gear", power: "Energy", info: "Info", list: "Contact", close: "OK CLOSE",
             wizT: "Safe and Ready", wiz1: "Household", v: "Adults", b: "Children", p: "Pets?", nxt: "Next →",
-            wiz2: "Food & Water", res: "Get Checklist →", h: "Your Checklist"
+            wiz2: "Food & Water", res: "Get Checklist →", h: "Your Checklist",
+            gearH: "Headlamp, LED flashlight, and extra batteries for 3 days. Store together in a waterproof box.",
+            powerH: "Minimum 20.000 mAh Powerbank recommended. Remember cables for all household devices.",
+            infoH: "Emergency radio with hand crank or batteries. Primary info source is DR P4.",
+            listH: "Enter names and important phone numbers below:"
         }
     };
 
@@ -92,15 +105,16 @@ layout: page
     }
 
     function updateUI() {
-        document.getElementById('main-title').innerText = trans[curLang].title;
-        document.getElementById('sub-title').innerText = trans[curLang].sub;
-        document.getElementById('tagline').innerText = trans[curLang].tag;
-        document.getElementById('nav-calc').innerText = trans[curLang].calc;
-        document.getElementById('nav-gear').innerText = trans[curLang].gear;
-        document.getElementById('nav-power').innerText = trans[curLang].power;
-        document.getElementById('nav-info').innerText = trans[curLang].info;
-        document.getElementById('nav-list').innerText = trans[curLang].list;
-        document.getElementById('close-btn').innerText = trans[curLang].close;
+        const t = trans[curLang];
+        document.getElementById('main-title').innerText = t.title;
+        document.getElementById('sub-title').innerText = t.sub;
+        document.getElementById('tagline').innerText = t.tag;
+        document.getElementById('nav-calc').innerText = t.calc;
+        document.getElementById('nav-gear').innerText = t.gear;
+        document.getElementById('nav-power').innerText = t.power;
+        document.getElementById('nav-info').innerText = t.info;
+        document.getElementById('nav-list').innerText = t.list;
+        document.getElementById('close-btn').innerText = t.close;
     }
 
     function getWizardHTML() {
@@ -113,15 +127,14 @@ layout: page
                     <div><label>${t.v}</label><input type="number" id="v_in" value="1"></div>
                     <div><label>${t.b}</label><input type="number" id="b_in" value="0"></div>
                 </div>
-                <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" id="pet_in" class="w-6 h-6"> <span class="font-bold">${t.p}</span></label>
-                <button onclick="goW(2)" class="w-full py-5 bg-green-900 text-white rounded-2xl font-black uppercase italic tracking-widest shadow-lg">${t.nxt}</button>
+                <label class="flex items-center space-x-3 cursor-pointer font-bold"><input type="checkbox" id="pet_in" class="w-6 h-6"> <span>${t.p}</span></label>
+                <button onclick="goW(2)" class="w-full py-5 bg-green-900 text-white rounded-2xl font-black uppercase italic tracking-widest">${t.nxt}</button>
             </div>
             <div id="step-2" class="step-node space-y-6">
                 <p class="text-2xl font-black text-green-900 italic underline uppercase">${t.wiz2}</p>
                 <div><label>${curLang==='da'?'Foretrækker I varm eller kold mad?':'Do you prefer hot or cold food?'}</label>
                 <select id="f_type"><option>Kold mad / Cold</option><option>Varm mad / Hot</option></select></div>
-                <label class="flex items-center space-x-3"><input type="checkbox" id="med_in" class="w-6 h-6"> <span class="font-bold">Receptpligtig medicin?</span></label>
-                <button onclick="calculateFinal(); goW(3)" class="w-full py-5 bg-green-900 text-white rounded-2xl font-black uppercase italic tracking-widest shadow-lg">${t.res}</button>
+                <button onclick="calculateFinal(); goW(3)" class="w-full py-5 bg-green-900 text-white rounded-2xl font-black uppercase italic tracking-widest">${t.res}</button>
             </div>
             <div id="step-3" class="step-node space-y-6">
                 <p class="text-3xl font-black text-green-900 italic uppercase underline">${t.h}:</p>
@@ -137,12 +150,12 @@ layout: page
         const pet = document.getElementById('pet_in').checked;
         const water = ((v + b) * 9) + (pet ? 3 : 0);
         document.getElementById('final-res').innerHTML = `
-            <div class="p-8 bg-blue-50 border-l-[12px] border-blue-600 rounded-r-3xl shadow-md">
+            <div class="p-8 bg-blue-50 border-l-[12px] border-blue-600 rounded-r-3xl">
                 <p class="text-xs font-black uppercase text-blue-800">Drikkevand (Skaffes):</p>
                 <p class="text-5xl font-black text-blue-900 italic">${water} Liter</p>
                 <p class="text-sm font-bold mt-2 text-blue-700 italic">Svarende til ${Math.ceil(water/1.5)} flasker á 1.5L.</p>
             </div>
-            <div class="p-8 bg-orange-50 border-l-[12px] border-orange-600 rounded-r-3xl shadow-md">
+            <div class="p-8 bg-orange-50 border-l-[12px] border-orange-600 rounded-r-3xl font-bold italic">
                 <p class="text-xs font-black uppercase text-orange-800">Mad (3 døgn):</p>
                 <p class="text-3xl font-black text-orange-900 italic">${(v+b)*9} Måltider / Meals</p>
             </div>`;
@@ -154,10 +167,26 @@ layout: page
     }
 
     function openM(k) { 
-        document.getElementById('m-title').innerText = k === 'calc' ? trans[curLang].wizT : trans[curLang][k]; 
-        document.getElementById('m-body').innerHTML = k === 'calc' ? getWizardHTML() : "Information under opdatering...";
+        const t = trans[curLang];
+        document.getElementById('m-title').innerText = k === 'calc' ? t.wizT : t[k]; 
+        
+        let bodyHTML = "";
+        if (k === 'calc') bodyHTML = getWizardHTML();
+        else if (k === 'gear') bodyHTML = `<p>${t.gearH}</p>`;
+        else if (k === 'power') bodyHTML = `<p>${t.powerH}</p>`;
+        else if (k === 'info') bodyHTML = `<p>${t.infoH}</p>`;
+        else if (k === 'list') {
+            bodyHTML = `<div class="space-y-4"><p class="font-bold">${t.listH}</p>
+                <textarea id="ntxt" class="w-full h-48 p-4 border-2 rounded-2xl outline-none" placeholder="Læge: 12345678..."></textarea>
+                <div class="flex gap-2"><button onclick="window.print()" class="flex-1 py-4 bg-black text-white rounded-xl font-bold uppercase text-xs">Print</button>
+                <button onclick="em()" class="flex-1 py-4 bg-green-700 text-white rounded-xl font-bold uppercase text-xs tracking-widest italic font-black">Email</button></div></div>`;
+        }
+        
+        document.getElementById('m-body').innerHTML = bodyHTML;
         document.getElementById('m-box').classList.remove('hidden'); 
     }
+
+    function em() { window.location.href = "mailto:?subject=Nødliste&body=" + encodeURIComponent(document.getElementById('ntxt').value); }
     function closeM() { document.getElementById('m-box').classList.add('hidden'); }
     updateUI();
 </script>
